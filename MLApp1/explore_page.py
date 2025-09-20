@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import os as os
+
+
+script_dircsv = os.path.dirname(__file__)
+pkl_file_pathcsv = os.path.join(script_dircsv, 'survey_results_public.csv')
+
 def shorten_categories(categories, cutoff):
     categorical_map = {}
     for i in range(len(categories)):
@@ -30,9 +36,10 @@ def clean_education(x):
     return 'Less than a Bachelors'
 
 
-@st.cache
+#@st.cache
+st.cache_data 
 def load_data():
-    df = pd.read_csv("survey_results_public.csv")
+    df = pd.read_csv(pkl_file_pathcsv)
     df = df[["Country", "EdLevel", "YearsCodePro", "Employment", "ConvertedComp"]]
     df = df[df["ConvertedComp"].notnull()]
     df = df.dropna()

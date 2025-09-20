@@ -1,10 +1,14 @@
 import streamlit as st
 import pickle
 import numpy as np
+import os as os
 
+
+script_dir = os.path.dirname(__file__)
+pkl_file_path = os.path.join(script_dir, 'saved_steps.pkl')
 
 def load_model():
-    with open('saved_steps.pkl', 'rb') as file:
+    with open(pkl_file_path, 'rb') as file:
         data = pickle.load(file)
     return data
 
